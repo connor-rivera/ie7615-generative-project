@@ -1,0 +1,15 @@
+# Python 3.13 · tested on macOS (Apple Silicon, mps) · install: pip install -r requirements.txt
+torch==2.15.0
+torchvision==0.29.2
+diffusers==0.42.1
+transformers==5.22.1
+accelerate==1.15.0
+safetensors==0.8.0
+numpy==2.5.4
+pillow==13.0.0
+matplotlib==3.11.2
+torchmetrics[image]==1.9.0
+torch-fidelity==0.4.0
+ipykernel==7.4.0
+nbformat==5.11.1
+nbconvert==7.17.2

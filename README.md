@@ -27,7 +27,22 @@ Expected layout:
 ```
 
 ## 2. Environment
-*To be added (`requirements.txt`, Python venv, Apple `mps` / CUDA notes).*
+Tested with Python 3.13 on macOS (Apple Silicon, PyTorch `mps` backend).
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m ipykernel install --user --name t2i-diffusion --display-name "Python (t2i-diffusion)"
+```
+Select the **Python (t2i-diffusion)** kernel when opening the notebooks.
+
+Check the GPU backend:
+```bash
+python -c "import torch; print('mps:', torch.backends.mps.is_available(), '| cuda:', torch.cuda.is_available())"
+```
+- **NVIDIA / CUDA:** first install the CUDA build of `torch`/`torchvision` from https://pytorch.org, then `pip install -r requirements.txt`.
+- **First run** downloads model weights (CLIP ViT-L/14 ≈ 1.7 GB; Stable Diffusion 1.5 later) to `~/.cache/huggingface/`.
 
 ## 3. Rebuild the cleaned dataset
 ```bash
