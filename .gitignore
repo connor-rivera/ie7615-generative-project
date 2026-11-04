@@ -1,0 +1,18 @@
+# Raw COCO data (download w/ direction from README)
+val2017/
+annotations/
+*.zip
+
+# Generated artifacts
+embeddings/
+outputs/
+checkpoints/
+
+# Notebook
+__pycahce__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# mac OS
+.DS_Store

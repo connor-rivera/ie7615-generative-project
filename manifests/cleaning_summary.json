@@ -1,0 +1,41 @@
+{
+ "config": {
+  "aspect_ratio_max": 2.0,
+  "gray_chroma_p99_max": 15,
+  "gray_check_size": 128
+ },
+ "stages": [
+  {
+   "stage": "start",
+   "images": 5000,
+   "captions": 25014
+  },
+  {
+   "stage": "after grayscale",
+   "images": 4835
+  },
+  {
+   "stage": "after aspect ratio",
+   "images": 4785
+  },
+  {
+   "stage": "after caption dedupe",
+   "images": 4785,
+   "captions": 23925
+  }
+ ],
+ "dropped_by_reason": {
+  "grayscale_rgb_encoded": 155,
+  "aspect_ratio": 53,
+  "grayscale_single_channel": 10
+ },
+ "dropped_images_total": 215,
+ "duplicate_captions_removed": 13,
+ "unique_captions_per_image": {
+  "3": 2,
+  "4": 7,
+  "5": 4766,
+  "6": 9,
+  "7": 1
+ }
+}
