@@ -16,3 +16,4 @@ __pycahce__/
 
 # mac OS
 .DS_Store
+text_embeddings/outputs/
