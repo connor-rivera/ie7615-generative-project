@@ -9,7 +9,7 @@ outputs/
 checkpoints/
 
 # Notebook
-__pycahce__/
+__pycache__/
 *.pyc
 .ipynb_checkpoints/
 .venv/

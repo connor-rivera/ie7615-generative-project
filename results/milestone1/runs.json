@@ -1,0 +1,50 @@
+{
+  "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "device": "mps",
+  "dtype": "torch.float16",
+  "image_size": [
+    512,
+    512
+  ],
+  "num_inference_steps": 30,
+  "guidance_scale": 7.5,
+  "negative_prompt": "blurry, distorted, low quality, duplicate, text, watermark",
+  "grid": "five_prompt_grid.png",
+  "runs": [
+    {
+      "run": 1,
+      "prompt": "A red double-decker bus driving through a rainy city street at night.",
+      "seed": 7615,
+      "image": "run_01_seed_7615.png",
+      "nsfw_detected": false
+    },
+    {
+      "run": 2,
+      "prompt": "A golden retriever wearing sunglasses on a sunny beach.",
+      "seed": 7616,
+      "image": "run_02_seed_7616.png",
+      "nsfw_detected": false
+    },
+    {
+      "run": 3,
+      "prompt": "A bowl of fresh fruit on a wooden table beside a bright window.",
+      "seed": 7617,
+      "image": "run_03_seed_7617.png",
+      "nsfw_detected": false
+    },
+    {
+      "run": 4,
+      "prompt": "An astronaut riding a horse across a desert under a blue sky.",
+      "seed": 7618,
+      "image": "run_04_seed_7618.png",
+      "nsfw_detected": false
+    },
+    {
+      "run": 5,
+      "prompt": "A small sailboat on a calm lake surrounded by snowy mountains.",
+      "seed": 7619,
+      "image": "run_05_seed_7619.png",
+      "nsfw_detected": false
+    }
+  ]
+}
