@@ -1,0 +1,23 @@
+{
+  "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "shape": [
+    5,
+    77,
+    768
+  ],
+  "image_ids": [
+    139,
+    285,
+    632,
+    724,
+    776
+  ],
+  "prompts": [
+    "A room with chairs, a table, and a woman in it.",
+    "A large bear that is sitting on grass.",
+    "Bedroom scene with a bookcase, blue comforter and window.",
+    "A stop sign is mounted upside-down on it's post.",
+    "Three stuffed bears hugging and sitting on a blue pillow"
+  ],
+  "finite_values": true
+}

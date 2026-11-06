@@ -2,7 +2,7 @@
 
 Conditioning a pretrained Stable Diffusion 1.5 on CLIP text embeddings, experimenting with noise schedules, sampling steps, conditioning strength, and classifier-free guidance, and evaluating with FID/KID, CLIP Score, and qualitative review.
 
-**Status:** dataset prepared (4,785 images w/ 23,925 captions). Embedding pipeline next.
+**Status:** dataset prepared (4,785 images w/ 23,925 captions), CLIP text-embedding baseline implemented, and five Stable Diffusion samples generated.
 
 # Get the data
 From https://cocodataset.org/\#download, download only:
@@ -27,7 +27,7 @@ Expected layout:
 ```
 
 ## 2. Environment
-Tested with Python 3.13 on macOS (Apple Silicon, PyTorch `mps` backend).
+Tested with Python 3.13 and 3.14 on macOS (Apple Silicon, PyTorch `mps` backend).
 
 ```bash
 python3.13 -m venv .venv
@@ -66,15 +66,39 @@ shasum -a 256 manifests/manifest.json
 Every dropped image and its reason is in `manifests/drop_log.csv`. Rationale and visual checks
 are in `notebooks/02_cleaning.ipynb`.
 
+## 4. Build the text-embedding baseline
+
+Create one deterministic caption prompt for each cleaned image:
+
+```bash
+python -m src.prompts
+```
+
+Open `notebooks/04_text_embeddings.ipynb` and run all cells. The notebook writes `manifests/prompts.json` with 4,785 image-caption pairs and saves the five-example CLIP tensor, metadata, and cosine-similarity visualization to `results/milestone1/text_embeddings/`.
+
+## 5. Generate the five Milestone 1 images
+
+Open `notebooks/03_five_prompt_image_runs.ipynb` and run all cells, or run:
+
+```bash
+python -m src.generate_samples
+```
+
+The pipeline uses Stable Diffusion 1.5 with five fixed prompts and deterministic seeds. It saves five 512×512 images, a comparison grid, and `runs.json` to `results/milestone1/`.
+
 ## Repository layout
 | Path | Contents |
 |---|---|
 | `src/clean.py` | Cleaning rules (`python -m src.clean`) |
 | `src/data.py` | `load_manifest()`, `load_image()`, `center_crop_resize()` |
 | `src/prompts.py` | One seeded caption per image as the generation prompt |
+| `src/generate_samples.py` | Five reproducible Stable Diffusion 1.5 prompt-to-image runs |
 | `notebooks/01_data_integrity_check.ipynb` | Verifies the download: counts, ID mapping, readable files |
 | `notebooks/02_cleaning.ipynb` | Cleaning walkthrough with visual checks |
-| `manifests/` | `manifest.json`, `drop_log.csv`, `cleaning_summary.json` |
+| `notebooks/03_five_prompt_image_runs.ipynb` | Generates and displays the five sample images |
+| `notebooks/04_text_embeddings.ipynb` | Demonstrates the CLIP text-to-embedding baseline |
+| `manifests/` | Cleaned dataset, drop log, summary, and deterministic prompt manifest |
+| `results/milestone1/` | Generated images, run metadata, and embedding evidence |
 
 ## Data license
 COCO annotations are CC BY 4.0. Images remain under their individual Flickr licenses and are
