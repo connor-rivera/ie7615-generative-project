@@ -103,3 +103,145 @@ The pipeline uses Stable Diffusion 1.5 with five fixed prompts and deterministic
 ## Data license
 COCO annotations are CC BY 4.0. Images remain under their individual Flickr licenses and are
 not redistributed here. Download them from the official source above.
+
+
+---
+
+## Milestone 2: Model Integration, Experiments & LoRA Fine-Tuning
+
+**Status: Completed**
+
+Milestone 2 builds on the COCO dataset preparation and CLIP text-embedding pipeline developed in Milestone 1.
+
+The objective was to integrate CLIP with Stable Diffusion 1.5, perform controlled image-generation experiments, and fine-tune the diffusion model using LoRA.
+
+All experiments were executed using Google Colab Pro with an NVIDIA Tesla T4 GPU.
+
+### 1. CLIP and Stable Diffusion Integration
+
+**Notebook:** `notebooks/05_milestone2_model_integration.ipynb`
+
+Integrated the CLIP text encoder with the pretrained Stable Diffusion 1.5 pipeline.
+
+Two text-conditioning approaches were compared:
+- Standard Stable Diffusion prompt encoding.
+- Explicit CLIP embeddings passed into the diffusion pipeline.
+
+**Results:**
+- Generated five pairs of 512 × 512 images.
+- Verified matching positive and negative text embeddings.
+- Confirmed identical final latents and image pixels across both approaches.
+- Saved generated images and reproducibility metadata.
+
+This validated the explicit Transformer-to-diffusion conditioning pipeline.
+
+### 2. Diffusion Parameter Experiments
+
+**Notebook:** `notebooks/06_milestone2_parameter_experiments.ipynb`
+
+Performed controlled experiments using COCO captions and fixed random seeds.
+
+| Parameter | Configurations |
+|---|---|
+| Classifier-free guidance | 1.0, 4.0, 7.5, 10.0 |
+| Inference steps | 15, 30, 50 |
+| Noise schedulers | PNDM, DDIM, Euler |
+| Resolution | 512 × 512 |
+| Baseline guidance | 7.5 |
+| Baseline steps | 30 |
+
+**Results:**
+- Generated 5 baseline images, 21 parameter-sweep images, and 1 smoke-test image.
+- Produced comparison grids for guidance strength, sampling steps, and schedulers.
+- Recorded experiment configurations, inference times, and run metadata.
+
+**Observations:**
+- CFG 7.5 produced reasonable prompt adherence across the tested examples.
+- Increasing sampling steps from 30 to 50 did not consistently improve visual quality.
+- Different schedulers produced variations in image composition.
+- Results are exploratory because the parameter sweeps used a small prompt set and one seed per prompt.
+
+### 3. LoRA Fine-Tuning
+
+**Notebook:** `notebooks/07_lora_finetuning.ipynb`
+
+Fine-tuned Stable Diffusion 1.5 using Low-Rank Adaptation (LoRA).
+
+A food-related subset of COCO 2017 training images was used.
+
+**Training configuration:**
+
+| Parameter | Value |
+|---|---|
+| Base model | Stable Diffusion 1.5 |
+| Dataset | COCO train2017, food-related subset |
+| Training images | 500 |
+| Image resolution | 512 × 512 |
+| LoRA rank | 8 |
+| Learning rate | 0.0001 |
+| Batch size | 1 |
+| Gradient accumulation | 4 |
+| Optimizer updates | 300 |
+| Trainable parameters | 1,594,368 |
+| GPU | NVIDIA Tesla T4 |
+
+The CLIP text encoder and VAE remained frozen. LoRA adapters were trained on selected UNet attention layers.
+
+**Results:**
+- Successfully completed 300 optimizer updates.
+- Saved LoRA adapter weights and training logs.
+- Generated training-loss visualizations.
+- Compared pretrained and fine-tuned model outputs on held-out COCO prompts.
+- Performed an additional custom pizza-prompt comparison.
+
+Fine-tuning changed the generated images, but visual comparisons did not establish consistent improvements in image quality.
+
+One pretrained comparison image was blocked by the safety checker and was not treated as an image-quality failure.
+
+### 4. Generated Results
+
+The Milestone 2 results are organized under:
+
+`results/milestone2/`
+
+The saved results include:
+
+- Baseline image gallery.
+- Classifier-free guidance comparison.
+- Sampling-step comparison.
+- Scheduler comparison.
+- Pretrained versus LoRA image comparisons.
+- Training-loss graph and experiment logs.
+- Selected individual generated images.
+
+The larger training datasets and model checkpoint files are stored separately in Google Drive rather than committed to GitHub.
+
+### 5. Running Milestone 2
+
+The notebooks are designed for Google Colab with an NVIDIA GPU.
+
+Run the notebooks in the following order:
+
+1. `05_milestone2_model_integration.ipynb`
+2. `06_milestone2_parameter_experiments.ipynb`
+3. `07_lora_finetuning.ipynb`
+
+Each notebook contains its own setup instructions and Google Drive output handling.
+
+Notebook 07 requires access to its selected COCO training images and captions. The pretrained model is obtained through Hugging Face Diffusers.
+
+Training results and LoRA checkpoints are saved persistently in Google Drive.
+
+### 6. Milestone 2 Deliverables
+
+- [x] CLIP and diffusion model integration
+- [x] Baseline conditional image generation
+- [x] Classifier-free guidance experiments
+- [x] Noise scheduler and sampling-step experiments
+- [x] 5–10 early image samples
+- [x] LoRA fine-tuning and training logs
+- [x] Generated comparison images
+- [x] One-page observations summary prepared
+
+
+
