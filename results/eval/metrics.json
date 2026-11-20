@@ -1,0 +1,29 @@
+{
+ "settings": {
+  "sampler": "euler",
+  "steps": 10,
+  "guidance": 10.0
+ },
+ "reference": "1,000 held-out real COCO val2017 images (512 center crop)",
+ "kid_subset_size": 500,
+ "results": {
+  "lora": {
+   "n": 1000,
+   "FID": 67.65765668193774,
+   "KID_mean": 0.005333085060119629,
+   "KID_std": 0.000729692974764676,
+   "IS_mean": 22.709101468099032,
+   "IS_std": 0.9733728324691352,
+   "CLIP_mean": 27.075522570610048
+  },
+  "stock": {
+   "n": 1000,
+   "FID": 69.94565772736627,
+   "KID_mean": 0.006426279544830322,
+   "KID_std": 0.0006158940641686272,
+   "IS_mean": 21.20633204546288,
+   "IS_std": 1.1228450500390141,
+   "CLIP_mean": 26.58484435558319
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "status": "confirmed",
+ "settings": {
+  "sampler": "euler",
+  "steps": 10,
+  "guidance": 10.0
+ },
+ "baseline": {
+  "sampler": "ddim",
+  "steps": 30,
+  "guidance": 7.5
+ },
+ "rule": "(agreed 2026-11-20, applied to mean CLIP score over the 15 sweep captions):\n  guidance: the LOWEST value within 1% of the best guidance mean (avoids the over-saturated end\n            when higher guidance buys almost nothing)\n  steps:    the FEWEST steps within 1% of the 50-step mean (speed for the 1,000-image runs)\n  sampler:  the highest mean",
+ "why": {
+  "guidance": "best mean 28.00; lowest value within 1% = 10.0",
+  "steps": "50-step mean 27.82; fewest steps within 1% = 10",
+  "sampler": "highest mean: ddim 27.31, dpmpp 28.14, euler 28.28"
+ },
+ "confirm": {
+  "combo_clip": 28.13,
+  "combo_sec": 3.47,
+  "baseline_clip": 27.31,
+  "baseline_sec": 10.31,
+  "accepted": true
+ }
+}

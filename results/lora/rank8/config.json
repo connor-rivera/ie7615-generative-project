@@ -1,0 +1,32 @@
+{
+ "run": "rank8",
+ "rank": 8,
+ "alpha": 8,
+ "lr": 0.0001,
+ "batch": 4,
+ "steps": 4000,
+ "warmup": 100,
+ "caption_dropout": 0.1,
+ "val_every": 250,
+ "ckpt_every": 500,
+ "grad_checkpointing": false,
+ "no_samples": false,
+ "seed": 7615,
+ "smoke": false,
+ "device": "mps",
+ "train_images": 3785,
+ "train_captions": 18923,
+ "val_images": 64,
+ "probe_images": 64,
+ "trainable_params": 1594368,
+ "unet_total_params": 861115332,
+ "target_modules": [
+  "to_q",
+  "to_k",
+  "to_v",
+  "to_out.0"
+ ],
+ "precision": "float32 (training)",
+ "noise_schedule": "DDPM scaled_linear, 1000 steps (SD 1.5's own)",
+ "loss": "MSE(predicted noise, true noise)"
+}

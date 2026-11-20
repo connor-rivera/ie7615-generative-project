@@ -50,7 +50,15 @@ LOG_FIELDS = ["run_id", "timestamp", "knob", "value", "image_id", "type", "capti
 
 
 def conditions(sweep):
-    """[(knob, value, settings)] for one sweep; settings = BASELINE with one key changed."""
+    """[(knob, value, settings)] for one sweep; settings = BASELINE with one key changed.
+
+    'best' = the combination proposed by src.select_settings (results/part2/best_settings.json).
+    """
+    if sweep == "best":
+        s = json.loads((OUT_DIR / "best_settings.json").read_text())["settings"]
+        s = {"sampler": s["sampler"], "steps": int(s["steps"]), "guidance": float(s["guidance"])}
+        base = {**BASELINE, "guidance": float(BASELINE["guidance"])}
+        return [("baseline", "-", BASELINE)] if s == base else [("best", "-", s)]
     knob, values = SWEEPS[sweep]
     out = []
     for v in values:
@@ -125,7 +133,7 @@ def run(sweeps):
                 secs = time.time() - t0
                 image.save(IMG_DIR / name)
                 log.writerow({
-                    "run_id": (f"baseline-{p['image_id']}" if knob == "baseline"
+                    "run_id": (f"{knob}-{p['image_id']}" if value == "-"
                                else f"{knob}-{value}-{p['image_id']}"),
                     "timestamp": datetime.now().isoformat(timespec="seconds"),
                     "knob": knob, "value": value, "image_id": p["image_id"],
@@ -140,7 +148,7 @@ def run(sweeps):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("sweep", choices=[*SWEEPS, "all"])
+    parser.add_argument("sweep", choices=[*SWEEPS, "best", "all"])
     args = parser.parse_args()
     run(list(SWEEPS) if args.sweep == "all" else [args.sweep])
 
