@@ -18,7 +18,9 @@ MODEL_ID = "stable-diffusion-v1-5/stable-diffusion-v1-5"
 
 
 class TextEmbeddingEncoder:
-    def __init__(self, model_id=MODEL_ID, device=None):
+    def __init__(self, model_id=MODEL_ID, device=None, dtype=torch.float32):
+        # dtype: match the diffusion pipeline (float16 for generation) so that
+        # our embeddings are bit-identical to the ones the pipeline makes itself.
 
 
         if device is None:
@@ -37,9 +39,11 @@ class TextEmbeddingEncoder:
             subfolder="tokenizer"
         )
 
+        self.dtype = dtype
         self.text_encoder = CLIPTextModel.from_pretrained(
             model_id,
-            subfolder="text_encoder"
+            subfolder="text_encoder",
+            torch_dtype=dtype
         ).to(self.device)
 
         # We are using pretrained CLIP representations.
@@ -58,11 +62,16 @@ class TextEmbeddingEncoder:
         if not isinstance(prompts, (list, tuple)):
             raise TypeError("Prompts must be a string or list of strings.")
 
+        # The empty string "" is allowed: it is the unconditional ("no caption")
+        # input that classifier-free guidance compares every caption against.
+        # Whitespace-only strings are still rejected as likely mistakes.
         if not prompts or any(
-            not isinstance(p, str) or not p.strip()
+            not isinstance(p, str) or (p != "" and not p.strip())
             for p in prompts
         ):
-            raise ValueError("Every prompt must contain non-empty text.")
+            raise ValueError(
+                'Every prompt must be text or exactly "" (the blank prompt).'
+            )
 
         tokens = self.tokenizer(
             prompts,
@@ -94,6 +103,18 @@ class TextEmbeddingEncoder:
             raise RuntimeError("Embeddings contain NaN or infinity.")
 
         return embeddings
+
+    def encode_with_blank(self, prompts):
+        """Return (caption_embeds, blank_embeds), each (N, 77, 768).
+
+        This is the pair Stable Diffusion needs for classifier-free guidance:
+        pass them as prompt_embeds and negative_prompt_embeds.
+        """
+        if isinstance(prompts, str):
+            prompts = [prompts]
+        caption_embeds = self.encode(prompts)
+        blank_embeds = self.encode([""] * len(prompts))
+        return caption_embeds, blank_embeds
 
     def save(self, prompts, output_dir="text_embeddings/outputs"):
 

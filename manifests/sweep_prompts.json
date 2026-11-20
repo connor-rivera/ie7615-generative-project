@@ -1,0 +1,96 @@
+{
+ "note": "Hand-picked from the held-out split (manifests/split.json); captions from prompts.json. Used for the baseline and guidance/sampler/steps sweeps, and the before/after LoRA grids.",
+ "base_seed": 7615,
+ "prompts": [
+  {
+   "image_id": 389316,
+   "type": "counting",
+   "seed": 7615,
+   "prompt": "Two young elephants stand next to a wooden fence."
+  },
+  {
+   "image_id": 396338,
+   "type": "counting",
+   "seed": 7616,
+   "prompt": "Three men are walking near passing trucks and cars."
+  },
+  {
+   "image_id": 60855,
+   "type": "counting",
+   "seed": 7617,
+   "prompt": "Five oranges with a red apple and a green apple."
+  },
+  {
+   "image_id": 193162,
+   "type": "colour",
+   "seed": 7618,
+   "prompt": "A black and white cow walking across a lush green field."
+  },
+  {
+   "image_id": 309964,
+   "type": "colour",
+   "seed": 7619,
+   "prompt": "A pair of friends sit beneath a massive blue umbrella."
+  },
+  {
+   "image_id": 39769,
+   "type": "colour",
+   "seed": 7620,
+   "prompt": "A couple of cats laying on top of a pink blanket."
+  },
+  {
+   "image_id": 255824,
+   "type": "relation",
+   "seed": 7621,
+   "prompt": "A doughnut with a bite taken from it next to a cup."
+  },
+  {
+   "image_id": 179898,
+   "type": "relation",
+   "seed": 7622,
+   "prompt": "A child is holding two hot dogs up to the photographer."
+  },
+  {
+   "image_id": 233370,
+   "type": "relation",
+   "seed": 7623,
+   "prompt": "A person lying on the ground with a suit case on top of them."
+  },
+  {
+   "image_id": 428218,
+   "type": "people",
+   "seed": 7624,
+   "prompt": "A man and woman are playing catch in the backyard."
+  },
+  {
+   "image_id": 386912,
+   "type": "people",
+   "seed": 7625,
+   "prompt": "a woman is sitting in front of a desk"
+  },
+  {
+   "image_id": 292415,
+   "type": "people",
+   "seed": 7626,
+   "prompt": "A person on a skateboard on a skate ramp."
+  },
+  {
+   "image_id": 383443,
+   "type": "simple",
+   "seed": 7627,
+   "prompt": "Deep bathtub displayed in area of large tiled bathroom."
+  },
+  {
+   "image_id": 79969,
+   "type": "simple",
+   "seed": 7628,
+   "prompt": "A tennis player jumps and stretches to return the ball."
+  },
+  {
+   "image_id": 474039,
+   "type": "simple",
+   "seed": 7629,
+   "prompt": "A baby sitting between big stuffed animals."
+  }
+ ]
+}
