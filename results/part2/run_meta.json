@@ -1,0 +1,19 @@
+{
+ "note": "Inference only: Stable Diffusion 1.5 and its CLIP text encoder are frozen. No weights are trained here; this run log is the record of every generated image and its settings.",
+ "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+ "device": "mps",
+ "dtype": "torch.float16",
+ "baseline": {
+  "sampler": "ddim",
+  "steps": 30,
+  "guidance": 7.5
+ },
+ "negative": "\"\" (blank; classifier-free guidance)",
+ "prompts": "manifests/sweep_prompts.json (15 held-out captions, seeds 7615-7629)",
+ "versions": {
+  "torch": "2.15.0",
+  "diffusers": "0.42.1",
+  "transformers": "5.22.1",
+  "python": "3.13.5"
+ }
+}

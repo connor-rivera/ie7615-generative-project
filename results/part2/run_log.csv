@@ -1,0 +1,16 @@
+run_id,timestamp,knob,value,image_id,type,caption,seed,sampler,steps,guidance,negative,seconds,clip_score,file
+baseline-389316,2026-11-20T01:03:29,baseline,-,389316,counting,Two young elephants stand next to a wooden fence.,7615,ddim,30,7.5,blank,10.15,,images/ddim_s30_g7.5_img389316_seed7615.png
+baseline-396338,2026-11-20T01:03:39,baseline,-,396338,counting,Three men are walking near passing trucks and cars.,7616,ddim,30,7.5,blank,10.02,,images/ddim_s30_g7.5_img396338_seed7616.png
+baseline-60855,2026-11-20T01:03:49,baseline,-,60855,counting,Five oranges with a red apple and a green apple.,7617,ddim,30,7.5,blank,10.33,,images/ddim_s30_g7.5_img60855_seed7617.png
+baseline-193162,2026-11-20T01:04:00,baseline,-,193162,colour,A black and white cow walking across a lush green field.,7618,ddim,30,7.5,blank,10.39,,images/ddim_s30_g7.5_img193162_seed7618.png
+baseline-309964,2026-11-20T01:04:10,baseline,-,309964,colour,A pair of friends sit beneath a massive blue umbrella.,7619,ddim,30,7.5,blank,10.42,,images/ddim_s30_g7.5_img309964_seed7619.png
+baseline-39769,2026-11-20T01:04:20,baseline,-,39769,colour,A couple of cats laying on top of a pink blanket.,7620,ddim,30,7.5,blank,10.27,,images/ddim_s30_g7.5_img39769_seed7620.png
+baseline-255824,2026-11-20T01:04:31,baseline,-,255824,relation,A doughnut with a bite taken from it next to a cup.,7621,ddim,30,7.5,blank,10.33,,images/ddim_s30_g7.5_img255824_seed7621.png
+baseline-179898,2026-11-20T01:04:41,baseline,-,179898,relation,A child is holding two hot dogs up to the photographer.,7622,ddim,30,7.5,blank,10.38,,images/ddim_s30_g7.5_img179898_seed7622.png
+baseline-233370,2026-11-20T01:04:52,baseline,-,233370,relation,A person lying on the ground with a suit case on top of them.,7623,ddim,30,7.5,blank,10.61,,images/ddim_s30_g7.5_img233370_seed7623.png
+baseline-428218,2026-11-20T01:05:02,baseline,-,428218,people,A man and woman are playing catch in the backyard.,7624,ddim,30,7.5,blank,10.24,,images/ddim_s30_g7.5_img428218_seed7624.png
+baseline-386912,2026-11-20T01:05:12,baseline,-,386912,people,a woman is sitting in front of a desk,7625,ddim,30,7.5,blank,10.22,,images/ddim_s30_g7.5_img386912_seed7625.png
+baseline-292415,2026-11-20T01:05:23,baseline,-,292415,people,A person on a skateboard on a skate ramp.,7626,ddim,30,7.5,blank,10.23,,images/ddim_s30_g7.5_img292415_seed7626.png
+baseline-383443,2026-11-20T01:05:33,baseline,-,383443,simple,Deep bathtub displayed in area of large tiled bathroom.,7627,ddim,30,7.5,blank,10.31,,images/ddim_s30_g7.5_img383443_seed7627.png
+baseline-79969,2026-11-20T01:05:43,baseline,-,79969,simple,A tennis player jumps and stretches to return the ball.,7628,ddim,30,7.5,blank,10.29,,images/ddim_s30_g7.5_img79969_seed7628.png
+baseline-474039,2026-11-20T01:05:54,baseline,-,474039,simple,A baby sitting between big stuffed animals.,7629,ddim,30,7.5,blank,10.41,,images/ddim_s30_g7.5_img474039_seed7629.png
